@@ -1,72 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nafisa — Career Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A1A;
+    --card-yellow: #F5E642;
+    --card-pink: #F0B8C8;
+    --card-green: #B8E0C8;
+    --card-blue: #B8D4F0;
+    --card-peach: #F5C8A8;
+    --card-lavender: #D8C8F0;
+    --accent: #1A1A1A;
+    --text-muted: #888;
+    --border: rgba(26,26,26,0.1);
+    --sidebar-w: 220px;
+  }
 
-nafisa
-GENERAL
-📊Dashboard 📝Applications 📚Learning 🎯Goals & Vision 📈Analytics 
-ACTIONS
-✏️Log Today 💾Export Backup 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-Not connected
-NA
-Nafisa Anjum
-AI Product Specialist
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-Good morning, Nafisa
+  /* SIDEBAR */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--dark);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
 
-May 2026
-Day 1 of 90-day sprint
-APPLICATIONS
-0
-Goal: 40 this month
+  .sidebar-logo {
+    padding: 0 24px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
 
-📬
-INTERVIEWS
-0
-Goal: 3 this month
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+  }
 
-🎙️
-HOURS FOCUSED
-0h
-This month
-⏱️
-RESPONSE RATE
-0%
-0 responses
-💌
-Recent Applications + Add
-No applications yet.
-Add your first one ↗
-Learning Progress
-30-DAY PLAN
+  .logo-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--card-yellow);
+    border-radius: 50%;
+    margin-left: 2px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+  }
 
-Today's Output
-No log yet for today
-Log Today ✏️ 
-This Week 
-YOUR WHY
-Loading...
-May 2026
-‹›
-Mo
-Tu
-We
-Th
-Fr
-Sa
-Su
-Today's Stats
-📬
-Apps Sent
-0
-⏱️
-Hours Focused
-0h
-✅
-Tasks Done
-0
-DAILY REMINDER
-"I'm not leaving an average mediocre life. I'm not stuck. I'm not someone who is forgotten — or can be forgotten."
-Priority Application
-JLL — Product Specialist
-Enterprise AI · Remote · Warsaw
-RLHF work + 4yr ops = perfect fit. Apply today.
+  .sidebar-section {
+    padding: 20px 16px 8px;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    padding: 0 8px;
+    margin-bottom: 6px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2px;
+  }
+
+  .nav-item:hover { background: rgba(255,255,255,0.07); color: white; }
+  .nav-item.active { background: rgba(255,255,255,0.12); color: white; font-weight: 500; }
+
+  .nav-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .nav-item.active .nav-icon { background: var(--card-yellow); }
+
+  .sidebar-bottom {
+    margin-top: auto;
+    padding: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .profile-mini:hover { background: rgba(255,255,255,0.07); }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--card-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+
+  .profile-name { font-size: 13px; font-weight: 500; color: white; }
+  .profile-role { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  /* MAIN AREA */
+  .main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 28px;
+  }
+
+  .content::-webkit-scrollbar { width: 4px; }
+  .content::-webkit-scrollbar-track { background: transparent; }
+  .content::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .greeting {
+    font-family: 'Syne', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+
+  .greeting span { color: var(--text-muted); }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .date-pill {
+    background: var(--dark);
+    color: white;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+  }
+
+  .day-count {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* METRIC CARDS */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .metric-card {
+    border-radius: 18px;
+    padding: 20px 18px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1.5px solid rgba(0,0,0,0.06);
+  }
+
+  .metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .metric-card:nth-child(1) { background: var(--card-yellow); }
+  .metric-card:nth-child(2) { background: var(--card-pink); }
+  .metric-card:nth-child(3) { background: var(--card-green); }
+  .metric-card:nth-child(4) { background: var(--card-blue); }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: rgba(26,26,26,0.55);
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .metric-footer {
+    margin-top: 10px;
+    font-size: 11.5px;
+    color: rgba(26,26,26,0.55);
+  }
+
+  .metric-deco {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    font-size: 56px;
+    opacity: 0.12;
+  }
+
+  /* GOAL BAR */
+  .goal-bar-wrap { margin-top: 8px; }
+  .goal-bar-track {
+    height: 4px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .goal-bar-fill {
+    height: 100%;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* MIDDLE ROW */
+  .mid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* SECTION CARDS */
+  .section-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    border: 1.5px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .section-badge {
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--cream);
+    padding: 3px 8px;
+    border-radius: 20px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* APPS LIST */
+  .app-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+    border-radius: 8px;
+    padding: 10px 8px;
+    margin: 0 -8px;
+  }
+
+  .app-item:hover { background: var(--cream); }
+  .app-item:last-child { border-bottom: none; }
+
+  .app-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .app-info { flex: 1; min-width: 0; }
+  .app-company { font-size: 13.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app-role { font-size: 11.5px; color: var(--text-muted); }
+
+  .app-status {
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .status-applied { background: #EEF3FF; color: #4466CC; }
+  .status-interview { background: #EEFFF5; color: #22AA66; }
+  .status-rejected { background: #FFF0F0; color: #CC4444; }
+  .status-offer { background: #FFFFF0; color: #AA8800; }
+
+  /* LEARNING TIERS */
+  .tier-row {
+    margin-bottom: 14px;
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .tier-name { font-size: 13px; font-weight: 600; }
+  .tier-count { font-size: 11px; color: var(--text-muted); }
+
+  .tier-track {
+    height: 8px;
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .tier-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .tier-1 { background: var(--card-yellow); }
+  .tier-2 { background: var(--card-pink); }
+  .tier-3 { background: var(--card-green); }
+  .tier-4 { background: var(--card-blue); }
+
+  .tier-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .skill-chip {
+    font-size: 10.5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--cream);
+    color: var(--dark);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+
+  .skill-chip.done {
+    background: var(--dark);
+    color: white;
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+
+  .skill-chip:not(.done):hover {
+    border-color: var(--dark);
+  }
+
+  /* RIGHT PANEL - CALENDAR + TIMELINE */
+  .right-panel {
+    width: 300px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    padding: 32px 24px 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .right-panel::-webkit-scrollbar { display: none; }
+
+  .calendar-card {
+    background: var(--dark);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .cal-month {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .cal-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .cal-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cal-btn:hover { background: rgba(255,255,255,0.2); }
+
+  .cal-days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11.5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.1s;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .cal-day:hover { background: rgba(255,255,255,0.1); }
+  .cal-day.today { background: var(--card-yellow); color: var(--dark); font-weight: 700; }
+  .cal-day.has-app { position: relative; }
+  .cal-day.has-app::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--card-pink);
+  }
+  .cal-day.other-month { color: rgba(255,255,255,0.2); }
+
+  /* DAILY LOG */
+  .log-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1.5px solid var(--border);
+  }
+
+  .log-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .log-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .log-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .log-info { flex: 1; }
+  .log-name { font-size: 12px; font-weight: 500; }
+  .log-val { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+
+  /* MOTIVATION CARD */
+  .motive-card {
+    background: var(--card-peach);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1.5px solid rgba(0,0,0,0.06);
+  }
+
+  .motive-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(26,26,26,0.5);
+    margin-bottom: 10px;
+  }
+
+  .motive-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+
+  /* ADD APP FORM */
+  .form-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,26,0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .form-overlay.open { display: flex; }
+
+  .form-card {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 32px;
+    width: 480px;
+    max-width: 90vw;
+    animation: slideUp 0.25s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .form-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-group { margin-bottom: 14px; }
+
+  .form-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .form-input, .form-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid rgba(26,26,26,0.15);
+    border-radius: 12px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .form-input:focus, .form-select:focus {
+    border-color: var(--dark);
+  }
+
+  .form-actions { display: flex; gap: 10px; margin-top: 6px; }
+
+  .btn {
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+  }
+
+  .btn-primary { background: var(--dark); color: white; }
+  .btn-primary:hover { background: #333; }
+  .btn-ghost { background: transparent; color: var(--text-muted); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--dark); color: var(--dark); }
+
+  /* BOTTOM ROW */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* LOG TODAY CARD */
+  .log-today-card {
+    background: var(--card-lavender);
+    border-radius: 20px;
+    padding: 22px;
+  }
+
+  .input-num {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 2px solid rgba(26,26,26,0.2);
+    background: transparent;
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--dark);
+    outline: none;
+    -moz-appearance: textfield;
+  }
+
+  .input-num::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .input-num:focus { border-bottom-color: var(--dark); }
+
+  .log-btn {
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: var(--dark);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .log-btn:hover { background: #333; }
+
+  /* MINI STAT */
+  .mini-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 10px;
+  }
+
+  .mini-stat-label { font-size: 11px; color: rgba(26,26,26,0.5); }
+  .mini-stat-val { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+
+  /* TABS */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--dark);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 200;
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ADD BTN */
+  .add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .add-btn:hover { background: #333; }
+
+  /* ANALYTICS PAGE */
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .analytics-card {
+    border-radius: 18px;
+    padding: 20px;
+    border: 1.5px solid var(--border);
+    background: white;
+  }
+
+  .a-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -2px;
+  }
+
+  .a-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* GOALS PAGE */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .goal-card {
+    border-radius: 20px;
+    padding: 24px;
+    border: 1.5px solid var(--border);
+  }
+
+  .goal-card:nth-child(1) { background: var(--card-yellow); }
+  .goal-card:nth-child(2) { background: var(--card-green); }
+  .goal-card:nth-child(3) { background: var(--card-pink); }
+  .goal-card:nth-child(4) { background: var(--card-blue); }
+
+  .goal-icon { font-size: 28px; margin-bottom: 10px; }
+  .goal-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .goal-desc { font-size: 12px; color: rgba(26,26,26,0.6); margin-bottom: 14px; }
+  .goal-progress-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+
+  .big-goal-bar {
+    margin-top: 10px;
+    height: 10px;
+    background: rgba(26,26,26,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .big-goal-fill {
+    height: 100%;
+    background: rgba(26,26,26,0.35);
+    border-radius: 5px;
+    transition: width 1s;
+  }
+
+  /* MILESTONES */
+  .milestones-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    border: 1.5px solid var(--border);
+    margin-top: 16px;
+    grid-column: 1 / -1;
+  }
+
+  .milestone {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .milestone:last-child { border-bottom: none; }
+
+  .milestone-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .milestone-content { flex: 1; }
+  .milestone-title { font-size: 13.5px; font-weight: 600; }
+  .milestone-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .milestone-time { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
+
+  /* CHART BAR */
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 80px;
+    margin-top: 12px;
+  }
+
+  .bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .bar-fill {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.6s cubic-bezier(0.4,0,0.2,1);
+    min-height: 4px;
+  }
+
+  .bar-label { font-size: 9px; color: var(--text-muted); }
+
+  /* RESPONSIVE NAV */
+  @media (max-width: 1100px) {
+    .right-panel { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-text">nafisa<span class="logo-dot"></span></div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">General</div>
+    <div class="nav-item active" onclick="showPage('dashboard', this)">
+      <div class="nav-icon">📊</div>
+      Dashboard
+    </div>
+    <div class="nav-item" onclick="showPage('applications', this)">
+      <div class="nav-icon">📝</div>
+      Applications
+    </div>
+    <div class="nav-item" onclick="showPage('learning', this)">
+      <div class="nav-icon">📚</div>
+      Learning
+    </div>
+    <div class="nav-item" onclick="showPage('goals', this)">
+      <div class="nav-icon">🎯</div>
+      Goals & Vision
+    </div>
+    <div class="nav-item" onclick="showPage('analytics', this)">
+      <div class="nav-icon">📈</div>
+      Analytics
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">Log Today</div>
+    <div class="nav-item" onclick="document.getElementById('logOverlay').classList.add('open')">
+      <div class="nav-icon">✏️</div>
+      Daily Log
+    </div>
+  </div>
+
+  <div class="sidebar-bottom">
+    <div class="profile-mini">
+      <div class="avatar">NA</div>
+      <div>
+        <div class="profile-name">Nafisa Anjum</div>
+        <div class="profile-role">AI Product Specialist</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="content">
+
+    <!-- DASHBOARD PAGE -->
+    <div class="page active" id="page-dashboard">
+      <div class="header">
+        <div>
+          <div class="greeting" id="greeting-text">Good morning, <span>Nafisa</span></div>
+          <div class="header-sub" id="date-text">Loading date...</div>
+        </div>
+        <div class="header-right">
+          <div class="date-pill" id="month-year">May 2026</div>
+          <div class="day-count" id="day-counter">Day 1 of 90-day sprint</div>
+        </div>
+      </div>
+
+      <!-- METRIC CARDS -->
+      <div class="metrics-row">
+        <div class="metric-card" onclick="showPage('applications', document.querySelector('[onclick*=\"applications\"]'))">
+          <div class="metric-label">Applications</div>
+          <div class="metric-value" id="metric-apps">0</div>
+          <div class="goal-bar-wrap">
+            <div class="metric-footer">Goal: 40 this month</div>
+            <div class="goal-bar-track"><div class="goal-bar-fill" id="bar-apps" style="width:0%"></div></div>
+          </div>
+          <div class="metric-deco">📬</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Interviews</div>
+          <div class="metric-value" id="metric-interviews">0</div>
+          <div class="goal-bar-wrap">
+            <div class="metric-footer">Goal: 3 this month</div>
+            <div class="goal-bar-track"><div class="goal-bar-fill" id="bar-interviews" style="width:0%"></div></div>
+          </div>
+          <div class="metric-deco">🎙️</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Hours Focused</div>
+          <div class="metric-value" id="metric-hours">0h</div>
+          <div class="metric-footer" id="hours-footer">This month</div>
+          <div class="metric-deco">⏱️</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Response Rate</div>
+          <div class="metric-value" id="metric-response">0%</div>
+          <div class="metric-footer" id="response-footer">0 responses received</div>
+          <div class="metric-deco">💌</div>
+        </div>
+      </div>
+
+      <!-- MID ROW -->
+      <div class="mid-row">
+        <!-- RECENT APPLICATIONS -->
+        <div class="section-card">
+          <div class="section-title">
+            Recent Applications
+            <button class="add-btn" onclick="document.getElementById('appOverlay').classList.add('open')">+ Add</button>
+          </div>
+          <div id="recent-apps-list">
+            <div style="text-align:center; padding:30px; color:var(--text-muted); font-size:13px;">
+              No applications yet.<br>
+              <span style="font-size:11px;">Add your first one ↗</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEARNING OVERVIEW -->
+        <div class="section-card">
+          <div class="section-title">
+            Learning Progress
+            <span class="section-badge">30-day plan</span>
+          </div>
+          <div id="learning-overview"></div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bottom-row">
+        <!-- TODAY'S LOG MINI -->
+        <div class="log-today-card">
+          <div class="section-title" style="font-size:14px; margin-bottom:12px;">Today's Output</div>
+          <div id="today-summary">
+            <div style="color:rgba(26,26,26,0.5); font-size:12px; padding:10px 0;">No log yet for today</div>
+          </div>
+          <button class="log-btn" onclick="document.getElementById('logOverlay').classList.add('open')">Log Today ✏️</button>
+        </div>
+
+        <!-- WEEK CHART -->
+        <div class="section-card" style="margin-bottom:0;">
+          <div class="section-title" style="font-size:14px;">This Week</div>
+          <div class="bar-chart" id="week-chart"></div>
+        </div>
+
+        <!-- MOTIVATION -->
+        <div class="motive-card">
+          <div class="motive-label">Your Why</div>
+          <div class="motive-text" id="motivation-text">Loading your vision...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLICATIONS PAGE -->
+    <div class="page" id="page-applications">
+      <div class="header">
+        <div>
+          <div class="greeting">Applications <span>Tracker</span></div>
+          <div class="header-sub">Every application is one step closer</div>
+        </div>
+        <button class="add-btn" style="height:fit-content;" onclick="document.getElementById('appOverlay').classList.add('open')">+ New Application</button>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-label">Total Sent</div>
+          <div class="metric-value" id="a-total">0</div>
+          <div class="metric-deco">📬</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Interviews</div>
+          <div class="metric-value" id="a-interviews">0</div>
+          <div class="metric-deco">🎙️</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Pending</div>
+          <div class="metric-value" id="a-pending">0</div>
+          <div class="metric-deco">⏳</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Offers</div>
+          <div class="metric-value" id="a-offers">0</div>
+          <div class="metric-deco">🏆</div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">All Applications</div>
+        <div id="all-apps-list">
+          <div style="text-align:center; padding:40px; color:var(--text-muted); font-size:13px;">No applications yet. Add your first one!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEARNING PAGE -->
+    <div class="page" id="page-learning">
+      <div class="header">
+        <div>
+          <div class="greeting">Learning <span>Tracker</span></div>
+          <div class="header-sub">30-day AI Product Specialist mastery plan</div>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="section-card">
+          <div class="section-title">Tier 1 — AI Tools Core <span class="section-badge">Week 1-2</span></div>
+          <div class="tier-skills" id="skills-tier1"></div>
+        </div>
+        <div class="section-card">
+          <div class="section-title">Tier 2 — Product & Analytics <span class="section-badge">Week 3-4</span></div>
+          <div class="tier-skills" id="skills-tier2"></div>
+        </div>
+      </div>
+      <div class="mid-row">
+        <div class="section-card">
+          <div class="section-title">Tier 3 — AI Concepts <span class="section-badge">Ongoing</span></div>
+          <div class="tier-skills" id="skills-tier3"></div>
+        </div>
+        <div class="section-card">
+          <div class="section-title">Tier 4 — Build & Publish <span class="section-badge">Bonus</span></div>
+          <div class="tier-skills" id="skills-tier4"></div>
+        </div>
+      </div>
+
+      <!-- Interview Prep -->
+      <div class="section-card" style="margin-bottom:20px;">
+        <div class="section-title">Interview Questions — Can You Answer These? <span class="section-badge">Practice</span></div>
+        <div id="interview-questions"></div>
+      </div>
+    </div>
+
+    <!-- GOALS PAGE -->
+    <div class="page" id="page-goals">
+      <div class="header">
+        <div>
+          <div class="greeting">Goals & <span>Vision</span></div>
+          <div class="header-sub">The 5-year plan — executed one day at a time</div>
+        </div>
+      </div>
+
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-icon">📬</div>
+          <div class="goal-title">Month 1 — Applications</div>
+          <div class="goal-desc">Send 40 targeted applications. Quality over spray.</div>
+          <div class="goal-progress-text"><span id="g-apps">0</span>/40</div>
+          <div class="big-goal-bar"><div class="big-goal-fill" id="gb-apps" style="width:0%"></div></div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-icon">🎙️</div>
+          <div class="goal-title">Month 1 — Interviews</div>
+          <div class="goal-desc">Land 3 interviews from those applications.</div>
+          <div class="goal-progress-text"><span id="g-interviews">0</span>/3</div>
+          <div class="big-goal-bar"><div class="big-goal-fill" id="gb-interviews" style="width:0%"></div></div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-icon">📝</div>
+          <div class="goal-title">Month 1 — LinkedIn Posts</div>
+          <div class="goal-desc">5 posts about AI product thinking. Build the voice.</div>
+          <div class="goal-progress-text"><span id="g-posts">0</span>/5</div>
+          <div class="big-goal-bar"><div class="big-goal-fill" id="gb-posts" style="width:0%"></div></div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-icon">📚</div>
+          <div class="goal-title">30-Day Learning</div>
+          <div class="goal-desc">Complete the AI Product Specialist mastery plan.</div>
+          <div class="goal-progress-text"><span id="g-learning">0</span>%</div>
+          <div class="big-goal-bar"><div class="big-goal-fill" id="gb-learning" style="width:0%"></div></div>
+        </div>
+
+        <!-- Full width milestones -->
+        <div class="milestones-card">
+          <div class="section-title" style="margin-bottom:0;">The Roadmap — 5 Years to the Company</div>
+          <div id="roadmap-milestones"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS PAGE -->
+    <div class="page" id="page-analytics">
+      <div class="header">
+        <div>
+          <div class="greeting">Analytics & <span>Insights</span></div>
+          <div class="header-sub">Numbers don't lie — track every move</div>
+        </div>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="analytics-card" style="background:var(--card-yellow);">
+          <div class="a-number" id="an-total">0</div>
+          <div class="a-label">Total Applications Sent</div>
+        </div>
+        <div class="analytics-card" style="background:var(--card-pink);">
+          <div class="a-number" id="an-rate">0%</div>
+          <div class="a-label">Response Rate</div>
+        </div>
+        <div class="analytics-card" style="background:var(--card-green);">
+          <div class="a-number" id="an-hours">0h</div>
+          <div class="a-label">Total Hours Focused</div>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="section-card">
+          <div class="section-title">Applications by Status</div>
+          <div id="status-breakdown"></div>
+        </div>
+        <div class="section-card">
+          <div class="section-title">Target Companies</div>
+          <div id="target-companies"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+
+    <!-- CALENDAR -->
+    <div class="calendar-card">
+      <div class="cal-header">
+        <div class="cal-month" id="cal-title">May 2026</div>
+        <div class="cal-nav">
+          <button class="cal-btn" onclick="changeMonth(-1)">‹</button>
+          <button class="cal-btn" onclick="changeMonth(1)">›</button>
+        </div>
+      </div>
+      <div class="cal-days-header">
+        <div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div><div>Su</div>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <!-- DAILY LOG MINI -->
+    <div class="log-card">
+      <div class="log-title">Today's Stats</div>
+      <div class="log-item">
+        <div class="log-icon" style="background:var(--card-yellow);">📬</div>
+        <div class="log-info">
+          <div class="log-name">Apps Sent</div>
+          <div class="log-val" id="rp-apps">0</div>
+        </div>
+      </div>
+      <div class="log-item">
+        <div class="log-icon" style="background:var(--card-pink);">⏱️</div>
+        <div class="log-info">
+          <div class="log-name">Hours Focused</div>
+          <div class="log-val" id="rp-hours">0h</div>
+        </div>
+      </div>
+      <div class="log-item">
+        <div class="log-icon" style="background:var(--card-green);">✅</div>
+        <div class="log-info">
+          <div class="log-name">Tasks Done</div>
+          <div class="log-val" id="rp-tasks">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTIVATION -->
+    <div class="motive-card" style="background:var(--card-lavender);">
+      <div class="motive-label">Daily Reminder</div>
+      <div class="motive-text">"I'm not leaving an average mediocre life. I'm not stuck. I'm not someone who is forgotten — or can be forgotten."</div>
+    </div>
+
+    <!-- JLL ROLE REMINDER -->
+    <div class="section-card" style="margin-bottom:0;">
+      <div class="section-title" style="font-size:13px;">Priority Application</div>
+      <div style="background:var(--cream); border-radius:12px; padding:14px;">
+        <div style="font-size:12.5px; font-weight:700; margin-bottom:4px;">JLL — Product Specialist</div>
+        <div style="font-size:11.5px; color:var(--text-muted); margin-bottom:8px;">Enterprise AI · Remote · Warsaw</div>
+        <div style="font-size:11px; color:rgba(26,26,26,0.6); line-height:1.5;">Your RLHF work + 4yr ops background = perfect fit. Apply today.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ADD APPLICATION OVERLAY -->
+<div class="form-overlay" id="appOverlay">
+  <div class="form-card">
+    <div class="form-title">New Application 📬</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Company*</label>
+        <input class="form-input" id="f-company" placeholder="e.g. JLL">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Role*</label>
+        <input class="form-input" id="f-role" placeholder="e.g. AI Product Specialist">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select class="form-select" id="f-status">
+          <option value="Applied">Applied</option>
+          <option value="Interview">Interview</option>
+          <option value="Offer">Offer</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date</label>
+        <input class="form-input" id="f-date" type="date">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Job URL</label>
+      <input class="form-input" id="f-url" placeholder="https://...">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notes</label>
+      <input class="form-input" id="f-notes" placeholder="Anything to remember...">
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="addApplication()">Save Application</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('appOverlay').classList.remove('open')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOG TODAY OVERLAY -->
+<div class="form-overlay" id="logOverlay">
+  <div class="form-card">
+    <div class="form-title">Log Today ✏️</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Apps Sent Today</label>
+        <input class="form-input" id="l-apps" type="number" min="0" placeholder="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Hours Focused</label>
+        <input class="form-input" id="l-hours" type="number" min="0" step="0.5" placeholder="0">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Tasks Completed</label>
+        <input class="form-input" id="l-tasks" type="number" min="0" placeholder="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Posts Made</label>
+        <input class="form-input" id="l-posts" type="number" min="0" placeholder="0">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="logToday()">Save Log</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('logOverlay').classList.remove('open')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA STORE ───────────────────────────────────────────────
+const DB = {
+  get: (k) => { try { return JSON.parse(localStorage.getItem('nafisa_' + k) || 'null'); } catch(e) { return null; } },
+  set: (k, v) => { try { localStorage.setItem('nafisa_' + k, JSON.stringify(v)); } catch(e) {} }
+};
+
+// Initialize defaults
+if (!DB.get('apps')) DB.set('apps', []);
+if (!DB.get('logs')) DB.set('logs', []);
+if (!DB.get('skills')) DB.set('skills', {
+  tier1: { 'ChatGPT Advanced': false, 'Claude Mastery': false, 'Gemini': false, 'Prompt Engineering': false },
+  tier2: { 'Google Analytics': false, 'SQL Basics': false, 'Notion': false, 'Zendesk/Intercom': false },
+  tier3: { 'LLM Concepts': false, 'RLHF Theory': false, 'AI Safety Basics': false, 'Product Metrics': false },
+  tier4: { 'AI Demo Project': false, 'Blog Post 1': false, 'Blog Post 2': false, 'Portfolio Case Study': false }
+});
+
+// ─── NAV ──────────────────────────────────────────────────────
+function showPage(id, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (navEl) navEl.classList.add('active');
+  renderPage(id);
+}
+
+// ─── DATES & GREETING ─────────────────────────────────────────
+function setupDateTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const greeting = hours < 12 ? 'Good morning' : hours < 18 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('greeting-text').innerHTML = `${greeting}, <span>Nafisa</span>`;
+
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('date-text').textContent = `Today is ${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+  document.getElementById('month-year').textContent = `${months[now.getMonth()]} ${now.getFullYear()}`;
+
+  // Day counter (from May 21 2026 = start)
+  const start = new Date('2026-05-21');
+  const diff = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
+  document.getElementById('day-counter').textContent = `Day ${Math.max(1, diff)} of your 90-day sprint`;
+
+  // Calendar
+  renderCalendar(now.getFullYear(), now.getMonth());
+}
+
+// ─── CALENDAR ─────────────────────────────────────────────────
+let calYear, calMonth;
+
+function renderCalendar(year, month) {
+  calYear = year; calMonth = month;
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-title').textContent = `${months[month]} ${year}`;
+
+  const now = new Date();
+  const apps = DB.get('apps') || [];
+  const appDates = new Set(apps.map(a => a.date));
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const startOffset = (firstDay === 0 ? 6 : firstDay - 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const daysInPrev = new Date(year, month, 0).getDate();
+
+  let html = '';
+  let total = 0;
+
+  for (let i = startOffset - 1; i >= 0; i--) {
+    html += `<div class="cal-day other-month">${daysInPrev - i}</div>`;
+    total++;
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = (d === now.getDate() && month === now.getMonth() && year === now.getFullYear());
+    const hasApp = appDates.has(dateStr);
+    html += `<div class="cal-day${isToday ? ' today' : ''}${hasApp ? ' has-app' : ''}">${d}</div>`;
+    total++;
+  }
+
+  let nextD = 1;
+  while (total % 7 !== 0) {
+    html += `<div class="cal-day other-month">${nextD++}</div>`;
+    total++;
+  }
+
+  document.getElementById('cal-grid').innerHTML = html;
+}
+
+function changeMonth(dir) {
+  calMonth += dir;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar(calYear, calMonth);
+}
+
+// ─── METRICS ──────────────────────────────────────────────────
+function updateMetrics() {
+  const apps = DB.get('apps') || [];
+  const logs = DB.get('logs') || [];
+
+  const total = apps.length;
+  const interviews = apps.filter(a => a.status === 'Interview').length;
+  const offers = apps.filter(a => a.status === 'Offer').length;
+  const pending = apps.filter(a => a.status === 'Applied').length;
+  const responses = apps.filter(a => a.status !== 'Applied').length;
+  const responseRate = total > 0 ? Math.round(responses / total * 100) : 0;
+  const totalHours = logs.reduce((s, l) => s + parseFloat(l.hours || 0), 0);
+
+  document.getElementById('metric-apps').textContent = total;
+  document.getElementById('metric-interviews').textContent = interviews;
+  document.getElementById('metric-hours').textContent = totalHours.toFixed(0) + 'h';
+  document.getElementById('metric-response').textContent = responseRate + '%';
+  document.getElementById('response-footer').textContent = `${responses} responses received`;
+
+  document.getElementById('bar-apps').style.width = Math.min(total / 40 * 100, 100) + '%';
+  document.getElementById('bar-interviews').style.width = Math.min(interviews / 3 * 100, 100) + '%';
+
+  // Analytics page
+  const an = document.getElementById('an-total');
+  if (an) { an.textContent = total; document.getElementById('an-rate').textContent = responseRate + '%'; document.getElementById('an-hours').textContent = totalHours.toFixed(0) + 'h'; }
+
+  // Goals page
+  const ga = document.getElementById('g-apps');
+  if (ga) {
+    ga.textContent = total;
+    document.getElementById('g-interviews').textContent = interviews;
+    const totalPosts = logs.reduce((s, l) => s + parseInt(l.posts || 0), 0);
+    document.getElementById('g-posts').textContent = totalPosts;
+    document.getElementById('gb-apps').style.width = Math.min(total / 40 * 100, 100) + '%';
+    document.getElementById('gb-interviews').style.width = Math.min(interviews / 3 * 100, 100) + '%';
+    document.getElementById('gb-posts').style.width = Math.min(totalPosts / 5 * 100, 100) + '%';
+
+    const skills = DB.get('skills') || {};
+    let done = 0, allSkills = 0;
+    Object.values(skills).forEach(tier => { Object.values(tier).forEach(v => { allSkills++; if(v) done++; }); });
+    const lPct = allSkills > 0 ? Math.round(done / allSkills * 100) : 0;
+    document.getElementById('g-learning').textContent = lPct;
+    document.getElementById('gb-learning').style.width = lPct + '%';
+  }
+
+  // App page metrics
+  document.getElementById('a-total') && (document.getElementById('a-total').textContent = total);
+  document.getElementById('a-interviews') && (document.getElementById('a-interviews').textContent = interviews);
+  document.getElementById('a-pending') && (document.getElementById('a-pending').textContent = pending);
+  document.getElementById('a-offers') && (document.getElementById('a-offers').textContent = offers);
+}
+
+// ─── APPLICATIONS ─────────────────────────────────────────────
+const STATUS_COLORS = {
+  'Applied': 'status-applied',
+  'Interview': 'status-interview',
+  'Rejected': 'status-rejected',
+  'Offer': 'status-offer'
+};
+
+const STATUS_DOTS = {
+  'Applied': '#4466CC',
+  'Interview': '#22AA66',
+  'Rejected': '#CC4444',
+  'Offer': '#AA8800'
+};
+
+function renderApps() {
+  const apps = DB.get('apps') || [];
+  const recent = [...apps].reverse().slice(0, 5);
+
+  const recentEl = document.getElementById('recent-apps-list');
+  if (!recentEl) return;
+
+  if (apps.length === 0) {
+    recentEl.innerHTML = `<div style="text-align:center;padding:30px;color:var(--text-muted);font-size:13px;">No applications yet.<br><span style="font-size:11px;">Add your first one ↗</span></div>`;
+    document.getElementById('all-apps-list') && (document.getElementById('all-apps-list').innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);font-size:13px;">No applications yet. Add your first one!</div>');
+    return;
+  }
+
+  recentEl.innerHTML = recent.map(a => `
+    <div class="app-item">
+      <div class="app-dot" style="background:${STATUS_DOTS[a.status]||'#888'}"></div>
+      <div class="app-info">
+        <div class="app-company">${a.company}</div>
+        <div class="app-role">${a.role}</div>
+      </div>
+      <span class="app-status ${STATUS_COLORS[a.status]||''}">${a.status}</span>
+    </div>
+  `).join('');
+
+  const allEl = document.getElementById('all-apps-list');
+  if (allEl) {
+    allEl.innerHTML = [...apps].reverse().map((a, i) => `
+      <div class="app-item">
+        <div class="app-dot" style="background:${STATUS_DOTS[a.status]||'#888'}"></div>
+        <div class="app-info">
+          <div class="app-company">${a.company}</div>
+          <div class="app-role">${a.role} · <span style="color:var(--text-muted)">${a.date}</span>${a.notes ? ` · ${a.notes}` : ''}</div>
+        </div>
+        <span class="app-status ${STATUS_COLORS[a.status]||''}" style="cursor:pointer;" onclick="cycleStatus(${apps.length-1-i})">${a.status}</span>
+      </div>
+    `).join('');
+  }
+
+  // Status breakdown for analytics
+  const sbEl = document.getElementById('status-breakdown');
+  if (sbEl) {
+    const counts = {};
+    apps.forEach(a => { counts[a.status] = (counts[a.status]||0)+1; });
+    sbEl.innerHTML = Object.entries(counts).map(([s, n]) => `
+      <div style="margin-bottom:12px;">
+        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>${s}</span><strong>${n}</strong></div>
+        <div class="tier-track"><div class="tier-fill" style="background:${STATUS_DOTS[s]||'#888'};width:${Math.round(n/apps.length*100)}%"></div></div>
+      </div>
+    `).join('');
+  }
+}
+
+function cycleStatus(idx) {
+  const apps = DB.get('apps') || [];
+  const statuses = ['Applied', 'Interview', 'Offer', 'Rejected'];
+  const cur = statuses.indexOf(apps[idx].status);
+  apps[idx].status = statuses[(cur + 1) % statuses.length];
+  DB.set('apps', apps);
+  render(); showToast(`Updated to: ${apps[idx].status}`);
+}
+
+function addApplication() {
+  const company = document.getElementById('f-company').value.trim();
+  const role = document.getElementById('f-role').value.trim();
+  if (!company || !role) { showToast('Company and role are required'); return; }
+
+  const apps = DB.get('apps') || [];
+  apps.push({
+    company, role,
+    status: document.getElementById('f-status').value,
+    date: document.getElementById('f-date').value || new Date().toISOString().split('T')[0],
+    url: document.getElementById('f-url').value,
+    notes: document.getElementById('f-notes').value
+  });
+  DB.set('apps', apps);
+
+  document.getElementById('appOverlay').classList.remove('open');
+  ['f-company','f-role','f-url','f-notes'].forEach(id => document.getElementById(id).value = '');
+
+  render();
+  renderCalendar(calYear, calMonth);
+  showToast(`✓ Added: ${company} — ${role}`);
+}
+
+// ─── DAILY LOG ─────────────────────────────────────────────────
+function logToday() {
+  const apps = parseInt(document.getElementById('l-apps').value || 0);
+  const hours = parseFloat(document.getElementById('l-hours').value || 0);
+  const tasks = parseInt(document.getElementById('l-tasks').value || 0);
+  const posts = parseInt(document.getElementById('l-posts').value || 0);
+
+  const logs = DB.get('logs') || [];
+  const today = new Date().toISOString().split('T')[0];
+  const existing = logs.findIndex(l => l.date === today);
+
+  const entry = { date: today, apps, hours, tasks, posts };
+  if (existing >= 0) logs[existing] = entry; else logs.push(entry);
+  DB.set('logs', logs);
+
+  document.getElementById('logOverlay').classList.remove('open');
+  ['l-apps','l-hours','l-tasks','l-posts'].forEach(id => document.getElementById(id).value = '');
+
+  render();
+  showToast(`✓ Logged! ${apps} apps · ${hours}h focused`);
+}
+
+function renderTodayLog() {
+  const logs = DB.get('logs') || [];
+  const today = new Date().toISOString().split('T')[0];
+  const log = logs.find(l => l.date === today);
+
+  const el = document.getElementById('today-summary');
+  if (!el) return;
+
+  if (!log) {
+    el.innerHTML = '<div style="color:rgba(26,26,26,0.5);font-size:12px;padding:10px 0;">No log yet for today</div>';
+    document.getElementById('rp-apps').textContent = '0';
+    document.getElementById('rp-hours').textContent = '0h';
+    document.getElementById('rp-tasks').textContent = '0';
+    return;
+  }
+
+  el.innerHTML = `
+    <div class="mini-stat"><span class="mini-stat-label">Apps sent</span><span class="mini-stat-val">${log.apps}</span></div>
+    <div class="mini-stat"><span class="mini-stat-label">Hours</span><span class="mini-stat-val">${log.hours}h</span></div>
+    <div class="mini-stat"><span class="mini-stat-label">Tasks</span><span class="mini-stat-val">${log.tasks}</span></div>
+    <div class="mini-stat"><span class="mini-stat-label">Posts</span><span class="mini-stat-val">${log.posts}</span></div>
+  `;
+
+  document.getElementById('rp-apps').textContent = log.apps;
+  document.getElementById('rp-hours').textContent = log.hours + 'h';
+  document.getElementById('rp-tasks').textContent = log.tasks;
+}
+
+// ─── WEEK CHART ───────────────────────────────────────────────
+function renderWeekChart() {
+  const el = document.getElementById('week-chart');
+  if (!el) return;
+  const logs = DB.get('logs') || [];
+  const days = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+  const now = new Date();
+  const dayOfWeek = now.getDay();
+  const colors = ['#F5E642','#F0B8C8','#B8E0C8','#B8D4F0','#F5C8A8','#D8C8F0','#E8E8E8'];
+
+  let html = '';
+  const maxH = Math.max(...logs.map(l => l.hours || 0), 1);
+
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(now);
+    d.setDate(now.getDate() - ((dayOfWeek === 0 ? 6 : dayOfWeek - 1)) + i);
+    const dateStr = d.toISOString().split('T')[0];
+    const log = logs.find(l => l.date === dateStr);
+    const h = log ? log.hours : 0;
+    const pct = Math.max(h / maxH * 100, h > 0 ? 8 : 4);
+
+    html += `
+      <div class="bar-col">
+        <div class="bar-fill" style="height:${pct}%;background:${colors[i]};"></div>
+        <div class="bar-label">${days[i]}</div>
+      </div>
+    `;
+  }
+  el.innerHTML = html;
+}
+
+// ─── LEARNING ─────────────────────────────────────────────────
+const TIER_COLORS = ['tier-1','tier-2','tier-3','tier-4'];
+const TIER_KEYS = ['tier1','tier2','tier3','tier4'];
+
+function renderLearning() {
+  const skills = DB.get('skills') || {};
+
+  // Dashboard overview
+  const ovEl = document.getElementById('learning-overview');
+  if (ovEl) {
+    let html = '';
+    TIER_KEYS.forEach((key, i) => {
+      const tier = skills[key] || {};
+      const done = Object.values(tier).filter(Boolean).length;
+      const total = Object.keys(tier).length;
+      const pct = total > 0 ? Math.round(done / total * 100) : 0;
+      const labels = ['Tier 1 — AI Tools', 'Tier 2 — Product & Analytics', 'Tier 3 — AI Concepts', 'Tier 4 — Build & Publish'];
+      html += `
+        <div class="tier-row">
+          <div class="tier-header">
+            <span class="tier-name">${labels[i]}</span>
+            <span class="tier-count">${done}/${total}</span>
+          </div>
+          <div class="tier-track"><div class="tier-fill ${TIER_COLORS[i]}" style="width:${pct}%"></div></div>
+        </div>
+      `;
+    });
+    ovEl.innerHTML = html;
+  }
+
+  // Full learning page
+  TIER_KEYS.forEach((key, i) => {
+    const el = document.getElementById('skills-tier' + (i+1));
+    if (!el) return;
+    const tier = skills[key] || {};
+    el.innerHTML = Object.entries(tier).map(([skill, done]) => `
+      <div class="skill-chip${done?' done':''}" onclick="toggleSkill('${key}','${skill}')">${done?'✓ ':''} ${skill}</div>
+    `).join('');
+  });
+
+  // Interview questions
+  const iqEl = document.getElementById('interview-questions');
+  if (iqEl) {
+    const questions = [
+      "Walk me through how you'd onboard a non-technical user to an AI writing tool.",
+      "What metrics would you track to measure AI product adoption?",
+      "A user says 'the AI gave me a wrong answer.' How do you troubleshoot that?",
+      "How would you identify patterns in 100 support tickets about AI tools?",
+      "What's the difference between a good prompt and a bad prompt?",
+      "Describe a time you identified a pattern in failures and documented it. (Use your RWS experience)"
+    ];
+    iqEl.innerHTML = questions.map((q, i) => `
+      <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);">
+        <div style="width:24px;height:24px;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">${i+1}</div>
+        <div style="font-size:13px;line-height:1.5;">${q}</div>
+      </div>
+    `).join('');
+  }
+}
+
+function toggleSkill(tier, skill) {
+  const skills = DB.get('skills') || {};
+  if (!skills[tier]) return;
+  skills[tier][skill] = !skills[tier][skill];
+  DB.set('skills', skills);
+  renderLearning();
+  updateMetrics();
+  showToast(skills[tier][skill] ? `✓ Completed: ${skill}` : `Unmarked: ${skill}`);
+}
+
+// ─── ROADMAP ──────────────────────────────────────────────────
+function renderRoadmap() {
+  const el = document.getElementById('roadmap-milestones');
+  if (!el) return;
+  const milestones = [
+    { color: '#F5E642', title: 'Right now — 0 to 3 months', desc: 'Contact RWS (warm lead), write Blood Bank case study as PM story, post once a week on LinkedIn. Apply to JLL and 39 other targeted roles.', time: 'Starting today' },
+    { color: '#F0B8C8', title: 'Phase 1 — Months 3 to 12', desc: 'Land first real remote product role at an AI company. Own something end-to-end. Not assist — own. Start building public presence in your niche.', time: '3-12 months' },
+    { color: '#B8E0C8', title: 'Phase 2 — Year 1 to 2', desc: 'Own a feature with users and numbers to speak to. LinkedIn recognizable in your niche. Start meeting future co-founders/team in communities.', time: '12-24 months' },
+    { color: '#B8D4F0', title: 'Phase 3 — Year 2 to 4', desc: '"AI tools for emerging markets" becomes a specific product. Get 10 paying users before quitting anything. Revenue is the only honest signal.', time: '2-4 years' },
+    { color: '#F5C8A8', title: 'Phase 4 — Year 4 to 5', desc: 'Hire first 2-3 people from the network you spent years building. Calm ownership. Global team. Creative work. Respected income. Your name on it.', time: '5 years' }
+  ];
+
+  el.innerHTML = milestones.map(m => `
+    <div class="milestone">
+      <div class="milestone-dot" style="background:${m.color}"></div>
+      <div class="milestone-content">
+        <div class="milestone-title">${m.title}</div>
+        <div class="milestone-desc">${m.desc}</div>
+        <div class="milestone-time">${m.time}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── MOTIVATION ROTATOR ───────────────────────────────────────
+const motivations = [
+  "You become difficult to forget by becoming difficult to replace.",
+  "Bangladesh is where you're from — not where you're limited to.",
+  "10 paying users before you quit anything. Revenue is the only honest signal.",
+  "You don't compete to fit in. You build to lead.",
+  "Financial independence first. Build the company from strength, not desperation.",
+  "Every application gets you closer. 40 applications = 4 interviews = 1 offer.",
+  "You're not a developer. You're an AI Product Specialist who can build."
+];
+
+function renderMotivation() {
+  const el = document.getElementById('motivation-text');
+  if (!el) return;
+  el.textContent = motivations[Math.floor(Math.random() * motivations.length)];
+}
+
+// ─── TARGET COMPANIES ─────────────────────────────────────────
+function renderTargetCompanies() {
+  const el = document.getElementById('target-companies');
+  if (!el) return;
+  const companies = ['Anthropic', 'OpenAI', 'Cohere', 'Scale AI', 'Hugging Face', 'JLL', 'Notion', 'Zapier', 'GitLab', 'Automattic'];
+  const apps = DB.get('apps') || [];
+  const appliedTo = new Set(apps.map(a => a.company.toLowerCase()));
+
+  el.innerHTML = companies.map(c => `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+      <span style="font-size:13px;font-weight:500;">${c}</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;${appliedTo.has(c.toLowerCase()) ? 'background:#EEFFF5;color:#22AA66;' : 'background:var(--cream);color:var(--text-muted);'}">${appliedTo.has(c.toLowerCase()) ? '✓ Applied' : 'Target'}</span>
+    </div>
+  `).join('');
+}
+
+// ─── TOAST ────────────────────────────────────────────────────
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// ─── RENDER ALL ───────────────────────────────────────────────
+function render() {
+  updateMetrics();
+  renderApps();
+  renderLearning();
+  renderTodayLog();
+  renderWeekChart();
+  renderRoadmap();
+  renderTargetCompanies();
+}
+
+function renderPage(id) {
+  updateMetrics();
+  if (id === 'dashboard') { renderApps(); renderLearning(); renderTodayLog(); renderWeekChart(); renderMotivation(); }
+  if (id === 'applications') renderApps();
+  if (id === 'learning') renderLearning();
+  if (id === 'goals') { updateMetrics(); renderRoadmap(); }
+  if (id === 'analytics') { renderApps(); renderTargetCompanies(); }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+// Set today's date in form
+document.getElementById('f-date').valueAsDate = new Date();
+
+// Close overlays on outside click
+['appOverlay','logOverlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+});
+
+setupDateTime();
+render();
+renderMotivation();
+
+// Rotate motivation every 30s
+setInterval(renderMotivation, 30000);
+</script>
+</body>
+</html>
 
