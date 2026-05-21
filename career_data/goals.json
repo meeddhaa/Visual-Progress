@@ -1,0 +1,17 @@
+{
+  "month_1": {
+    "applications": 40,
+    "interviews": 3,
+    "posts": 5,
+    "projects": 1
+  },
+  "month_2": {
+    "applications": 100,
+    "interviews": 10,
+    "offers": 2
+  },
+  "month_3": {
+    "job_secured": true,
+    "salary": 60000
+  }
+}

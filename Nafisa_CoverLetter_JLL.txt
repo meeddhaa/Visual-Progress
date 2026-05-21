@@ -1,0 +1,35 @@
+Nafisa Anjum
++880 189 368 0829
+anjumnaafisa@gmail.com
+
+Hiring Manager
+JLL - Enterprise AI Team
+Warsaw, Poland (Remote)
+
+Re: Product Specialist — Enterprise AI (REQ507699)
+
+Dear Hiring Manager,
+
+I'm applying for the Product Specialist — Enterprise AI role because my background sits exactly at the intersection you're hiring for: AI hands-on experience, technical support delivery, and product thinking that turns user feedback into platform improvements.
+
+For the past year, I've been doing RLHF evaluation at RWS Group — scoring LLM outputs at production scale across text, image, audio, and video modalities. That work taught me how to identify systematic AI failure patterns, document quality improvements, and translate user behavior signals into actionable product insights. I've designed evaluation rubrics adopted across the team and maintained zero escalations over 8+ months by catching issues before they became problems. This is exactly what the Product Specialist role does for JLL's internal AI tools — just focused on employee users instead of annotation teams.
+
+Before that, I spent 3+ years in technical support and operations roles, supporting platforms serving hundreds of users. At Vision Cables, I diagnosed technical issues, created documentation, and trained non-technical staff on platform functionality. At ASAP Tickets, I managed 100+ client accounts and maintained a 4.7/5 satisfaction rating at high volume. I learned how to resolve issues quickly while noticing the patterns that signal deeper product problems — which is the "every user interaction is a signal" mindset you described in the job posting.
+
+I've also built AI-integrated products using Claude API and Gemini API, which means I understand how these tools work from both the user side and the builder side. I know what good prompt engineering looks like, what makes an AI interaction feel useful versus frustrating, and how to explain AI capabilities to non-technical users in ways that actually help them get value from the tool.
+
+What drew me to this role specifically is that it's not just support — it's embedded product partnership. You're looking for someone who resolves issues but also shapes how AI products are understood, used, and improved at scale. That's the work I want to do: helping people get real value from AI tools while building the feedback loops that make those tools better.
+
+I'm particularly excited about contributing to:
+• Building AI-assisted support workflows and prompt libraries that improve response quality and reduce handle time
+• Creating self-service resources and onboarding materials that scale adoption without scaling support headcount  
+• Translating support patterns into enhancement requests that make the product easier to use for everyone
+
+I'm available immediately for a full-time remote role and open to working across time zones. I'd welcome the opportunity to discuss how my AI evaluation experience, support background, and product thinking can help JLL's Enterprise AI team deliver tools that employees actually want to use.
+
+Thank you for considering my application. I look forward to speaking with you.
+
+Best regards,
+Nafisa Anjum
+
+Attachments: Resume

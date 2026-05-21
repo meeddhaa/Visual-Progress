@@ -1,0 +1,23 @@
+{
+  "tier_1": {
+    "ChatGPT_mastery": false,
+    "Claude_mastery": false,
+    "Gemini_mastery": false,
+    "Prompt_engineering": false
+  },
+  "tier_2": {
+    "Google_Analytics": false,
+    "SQL_basics": false,
+    "Notion_mastery": false,
+    "Support_tools": false
+  },
+  "tier_3": {
+    "AI_concepts": false,
+    "Product_feedback": false,
+    "Metrics_understanding": false
+  },
+  "tier_4": {
+    "Demo_project": false,
+    "Blog_posts": false
+  }
+}
